@@ -37,7 +37,6 @@
   --font-size-body-s: 13px;
 }
 
-
 .container {
   display: flex;
   width: 100%;
@@ -71,7 +70,7 @@
   margin-bottom: 48px;
 }
 
-.logo>img {
+.logo > img {
   width: 100%;
 }
 
@@ -95,7 +94,7 @@
   width: 38px;
 }
 
-.nav_userImg>img {
+.nav_userImg > img {
   width: 100%;
   position: relative;
 }
@@ -118,7 +117,7 @@
   animation: userOptions 2s ease-in-out;
 }
 @keyframes userOptions {
-  0%{ 
+  0% {
     transform: translateX(-40px);
     opacity: 0;
   }
@@ -126,7 +125,6 @@
     transform: translateX(0px);
     opacity: 1;
   }
-
 }
 
 .userOptions button {
@@ -138,7 +136,6 @@
   padding: 10px 50px;
   width: 100%;
   border-radius: 6px;
-
 }
 
 .nav_items {
@@ -414,7 +411,6 @@
 }
 
 .auth-container {
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -434,7 +430,6 @@
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-
 }
 
 .auth-content form {
@@ -445,7 +440,6 @@
   padding-top: 30px;
   border-radius: 18px;
   width: 380px;
-
 }
 
 .auth-content form label {
@@ -454,7 +448,6 @@
   color: var(--color-white);
   text-transform: capitalize;
   margin-bottom: 44px;
-
 }
 
 .auth-content form input {
@@ -473,14 +466,14 @@
   caret-color: var(--color-red);
   margin-bottom: 2.3rem;
   text-indent: 10px;
-  outline: none
+  outline: none;
 }
 
 .auth-content form input::placeholder {
   color: var(--color-greyish-blue);
 }
 
-.auth-content form>button {
+.auth-content form > button {
   background-color: var(--color-red);
   border: none;
   width: 100%;
@@ -542,10 +535,8 @@
 @keyframes errorAnimation {
   0% {
     transform: translateX(500px);
-
   }
   25% {
-
     transform: translateX(0);
   }
   75% {
@@ -555,13 +546,16 @@
     transform: translateX(300px);
   }
 }
+
+input:-internal-autofill-selected {
+  background: transparent;
+}
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
-
   }
   @keyframes userOptions {
-    0%{ 
+    0% {
       transform: translateY(-40px);
       opacity: 0;
     }
@@ -569,7 +563,6 @@
       transform: translateY(0px);
       opacity: 1;
     }
-  
   }
 
   .navContainer {
@@ -586,7 +579,6 @@
     justify-content: space-between;
     padding: 0 20px;
     height: 70px;
-
   }
 
   .logo {
@@ -605,7 +597,7 @@
     flex-direction: row;
   }
 
-  .logo>img {
+  .logo > img {
     height: 100%;
     width: auto;
   }
@@ -740,7 +732,6 @@
   .auth-content form {
     width: 90%;
     border-radius: 12px;
-
   }
 
   .auth-content {
@@ -754,7 +745,6 @@
   .navbar {
     flex-wrap: wrap;
   }
-
 }
 
 @media (max-width: 300px) {

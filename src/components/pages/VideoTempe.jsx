@@ -4,51 +4,51 @@ import bookmarkedIcon from "../../assets/icon-bookmark-full.svg";
 import tv from "../../assets/icon-nav-tv-series.svg";
 import paly from "../../assets/icon-play.svg";
 import { AuthContext } from "../../context/AuthContext";
-import { createBookmark } from "../../utils/bookmark";
 
+import {
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+import { db} from "../../utils/firebase";
 
-import { collection, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
-import {db, storage } from "../../utils/firebase";
-
-
-
-const VideoTempe = ({ classN, videos, searchQuai, bookmark, setBookmark, bookmarkId }) => {
+const VideoTempe = ({
+  classN,
+  videos,
+  bookmarkId,
+  searchQuai
+}) => {
   const [book, setBook] = useState(false);
-  const { currentUser, setError, error, bookmarkData } = useContext(AuthContext)
-
+  const { currentUser, setError, error, bookmarkData } =
+    useContext(AuthContext);
 
   const handleBookMark = async () => {
-    if ( currentUser) {
-
-      
-      if (book === false ) {
-        
-        await addDoc(collection(db, 'bookmark'), {
+    if (currentUser) {
+      if (book === false) {
+        await addDoc(collection(db, "bookmark"), {
           videos,
           userID: currentUser.uid,
-        })
-        setBook(true)
-    } else if (book === true) {
-      await deleteDoc(doc(db, 'bookmark', bookmarkId))
-    }
-  } else if ( !currentUser) setError({...error, bookmark: true})
+          searchQuai: searchQuai
+        });
+        setBook(true);
+      } else if (book === true) {
+        await deleteDoc(doc(db, "bookmark", bookmarkId));
+      }
+    } else if (!currentUser) setError({ ...error, bookmark: true });
   };
 
   useEffect(() => {
-    const q = bookmarkData?.map(i => i)
-    const sss = () =>{
-    q?.forEach(element => { 
-      if (element.videos.id === videos.id)
-      return setBook(true)
-    });
-    
-    }
+    const q = bookmarkData?.map((i) => i);
+    const sss = () => {
+      q?.forEach((element) => {
+        if (element.videos.id === videos.id) return setBook(true);
+      });
+    };
     return () => {
-      sss()
+      sss();
     };
   }, []);
-  
-
 
   return (
     <div className={`${classN} video_Content`}>

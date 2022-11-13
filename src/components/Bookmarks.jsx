@@ -5,24 +5,21 @@ import { db } from "../utils/firebase";
 import { SearchFiled, VideoTempe } from "./";
 
 const Bookmarks = (bookmark, setBookmark) => {
-  const { currentUser, bookmarkData } = useContext(AuthContext)
-  const bookmarkedName = bookmark?.bookmark?.map((i) => i);
+  const { bookmarkData } = useContext(AuthContext)
 
-  const Wallpaper = bookmark?.bookmark?.filter(
+  const Wallpaper = bookmarkData?.filter(
     (item) => item?.searchQuai?.toString() === "Wallpaper"
   );
 
-  const newVi = bookmark?.bookmark?.filter(
+  const newVi = bookmarkData?.filter(
     (item) => item?.searchQuai?.toString() === "new"
   );
-  const top = bookmark?.bookmark?.filter(
+  const top = bookmarkData?.filter(
     (item) =>
       item?.searchQuai?.toString() !== "new" &&
       item?.searchQuai?.toString() !== "Wallpaper"
   );
 
-
-console.log('first', bookmarkData);
 
 
 

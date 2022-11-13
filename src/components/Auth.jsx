@@ -6,9 +6,8 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { storage, db, auth as authFire } from "../utils/firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage,  auth as authFire } from "../utils/firebase";
+import { ref } from "firebase/storage";
 import Loading from "./pages/Loading";
 
 
@@ -45,32 +44,9 @@ const Auth = () => {
 
         const date = new Date().getTime();
         const storageRef = ref(storage, `${email + date}`);
-
-        // await uploadBytesResumable(storageRef).then(() => {
-        //   getDownloadURL(storageRef).then(async (downloadURL) => {
-        //     try {
-        //       await updateProfile(res.user, {
-        //         photoURL: downloadURL,
-        //       });
-
-        //       await setDoc(doc(db, "users", res.user.uid), {
-        //         uid: res.user.uid,
-        //         email,
-        //         photoURL: downloadURL,
-        //       });
-
-        //       await setDoc(doc, (db, "userBooks", res.user.uid), {});
-        //       console.log('first');
-        
-        //     } catch (error) {
-          //       console.log(error);
-          //       setErr(true);
-          //       setLoading(false);
-          //     }
-          //   });
-          // });
           
       navigate("/");
+      setFromValues('')
       } catch (error) {
         setErr(true);
         setLoading(false);
@@ -81,6 +57,7 @@ const Auth = () => {
       try {
         await signInWithEmailAndPassword(authFire, email, password);
         navigate("/");
+        setFromValues('')
       } catch (error) {
         setErr(true);
       }
@@ -126,7 +103,7 @@ const Auth = () => {
       } else return setFromError({ ...formError, password: "" });
     }
 
-    if (placeholder === "Confirm Password") {
+    if (placeholder.substring(1) === "Confirm Password") {
       setFromValues({ ...formValues, confirmPassword: value });
 
       if (!formValues.confirmPassword) {
@@ -159,6 +136,7 @@ const Auth = () => {
               required
               value={formValues.email}
               onChange={handleChange}
+              autoComplete={false}
             />
 
             <small>{formError.email}</small>
@@ -171,6 +149,7 @@ const Auth = () => {
               required
               value={formValues.password}
               onChange={handleChange}
+              autoComplete={false}
             />
             <small>{formError.password}</small>
           </div>
@@ -182,6 +161,7 @@ const Auth = () => {
                 required
                 value={formValues.confirmPassword}
                 onChange={handleChange}
+                autoComplete={false}
               />
               <small>{formError.confirmPassword}</small>
             </div>

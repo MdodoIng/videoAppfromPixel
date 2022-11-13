@@ -1,13 +1,11 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { fetchPixelsAPI } from "../utils/api";
 import { SearchFiled, Trending, VideoTempe } from "./";
 
 const Home = ({
   selectCategory,
   trending,
-  setSelectCategory,
   bookmark,
   setBookmark,data,
   searchQuai
